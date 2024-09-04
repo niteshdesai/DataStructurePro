@@ -80,8 +80,6 @@ int simpleFind(int *r,int *f,int serchEl)
 {
   int i=0,t=0;
 
-  if(*r<*f)
-  {
      for(i=0;i<=max;i++)
      {
        if(que[i]==serchEl)
@@ -90,19 +88,10 @@ int simpleFind(int *r,int *f,int serchEl)
         break;
        }
      } 
-  }
-  else
-  {
-  for(i=0;i<=*r;i++)
-  {
-    if(que[i]==serchEl)
-    {
-        t=i;
-        break;
-    }
-  }
-  }
-  if(i>*r)
+
+
+
+  if(i>max)
   {
     return -1;
   }
