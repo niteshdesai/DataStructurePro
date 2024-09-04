@@ -1,0 +1,80 @@
+#include<conio.h>
+#include<stdio.h>
+
+void insert(int que[],int *r,int *f)
+
+{
+
+  int v;
+  if(*r==9)
+  {
+   printf("\n queue is overflow");
+  }
+  else
+  {
+    printf("\nEnter element:");
+    scanf("%d",v);
+    printf("v %d",v);
+    if(*r==-1&&*f==-1)
+    {
+     *f=*r=0;
+     que[*r]=v;
+     //printf("%d",que[*r]);
+    }
+    *r+=1;
+    que[*r]=v;
+    // printf("%d",que[*r]);
+
+
+  }
+}
+void rem(int que[],int *r,int *f)
+{
+  if(*f==-1)
+  {
+  printf("\n Queue is empty:");
+  }
+  else if(*f==*r)
+  {
+    printf("second if");
+    printf("\nRemove Element:%d",que[*f]);
+    *f=*r=-1;
+  }
+  else
+  {
+    printf("f %d",*f);
+   printf("\nRemove Element: %d",que[*f]);
+   *f=*f+1;
+  }
+}
+void main()
+{
+ int r1=-1,f1=-1,c;
+ int *r=&r1;
+ int *f=&f1;
+ int que[10];
+  clrscr();
+ while(1)
+ {
+     printf("\n1:insert:");
+     printf("\n2:remove:");
+     printf("\n3:display:");
+     printf("\n4:exit:");
+     printf("\nEnter your choice:");
+     scanf("%d",&c);
+
+     switch(c)
+     {
+      case 1:insert(que,r,f);
+	     break;
+      case 2:rem(que,r,f);
+	     break;
+      case 4:exit(0);
+
+
+     }
+
+
+ }
+ getch();
+}
