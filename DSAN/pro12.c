@@ -37,7 +37,8 @@ struct node* insert(struct node *head,int ele)
         }while (curr!=head);
         prev->next=n;
 		n->next=curr;
-         if (curr == head && ele< head->data) {
+
+        if (curr == head && ele<head->data) {
            head = n;
          }
 	}
@@ -58,7 +59,7 @@ struct node* del(struct node *head,int ele)
 	}
 	else
 	{
-	   while(curr!=NULL && ele>curr->data)
+	   while(curr!=NULL && ele!=curr->data)
 	   {
 		   prev=curr;
 		   curr=curr->next;
