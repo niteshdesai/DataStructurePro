@@ -25,6 +25,16 @@ struct node* insert(struct node *head,int ele)
 		head=n;
 
 	}
+    else if(head->data>ele)
+    {
+        n->next=head;
+        do
+        {
+            curr=curr->next;
+        } while (curr->next!=head);
+        curr->next=n;
+        head=n;
+    }
 	else
 	{
 		 do
@@ -38,10 +48,11 @@ struct node* insert(struct node *head,int ele)
         prev->next=n;
 		n->next=curr;
 
-        if (curr == head && ele<head->data) {
+       
+	}
+     if (curr == head && ele<head->data) {
            head = n;
          }
-	}
 
   return head;
 }
