@@ -8,42 +8,65 @@ struct node
     char name[10];
     struct node *next;
 };
-struct node* insert(struct node *head,int id,char nm[])
-{
-    struct node *n,*prev,*curr;
 
-   n=(struct node*)malloc(sizeof(struct node)) ;
-   n->id=id;
-   strcpy(n->name,nm);
+struct node* insert(struct node *head,int id,char nm[]) 
+{
+    struct node *n,*pre,*curr;
+
+    n=(struct node*)malloc(sizeof(struct node));
+
+    n->id=id;
+    strcpy(n->name,nm);
 
     if(head==NULL)
     {
-      
-        n->pre=n;
         n->next=n;
+        n->pre=n;
         head=n;
         return head;
     }
-   curr=head;
-   prev=NULL;
-        do
+    curr=head;
+    pre=NULL;
+    if(head->id>id)
+    {
+          n->next=curr;
+          n->pre=curr->pre;
+          head->pre=n;
+
+          while(curr->next!=head)
+          {
+            curr=curr->next;
+          }
+          curr->next=n;
+          head=n;
+
+    }
+    else
+    {
+       do
+       {
+        pre=curr;
+        curr=curr->next;
+
+        if(curr->id>id)
         {
-              prev=curr;
-              curr=curr->next;
-             if (curr == head || id < curr->id) {
               break;
-             }
-        }while (curr!=head);
-            
-            n->next=curr;
-            n->pre=prev;
-            prev->next=n;
-            curr->pre=n;
-   if (curr == head && id<head->id) {
-        head = n;
+        }
+       } while (curr!=head);
+
+       pre->next=n;
+       n->pre=pre;
+       curr->pre=n;
+       n->next=curr;
+       
+
+              
     }
     return head;
+
 }
+
+
 struct node* del(struct node *head)
 {
     int ele;
@@ -55,7 +78,10 @@ struct node* del(struct node *head)
       printf("\nEnter id to delete:");
       scanf("%d",&ele);
       if(head->next==head && head->id==ele)
+      {
            head=NULL;
+           printf("\nData is delete successfully");
+      }
      else if(head->id==ele)
         {
            head->pre->next=head->next;
@@ -153,6 +179,7 @@ void main()
              printf("\nEnter name: ");
             scanf("%s",name);
             head=insert(head,id,name);
+             display(head);
             break;
         case 2:
             head=del(head);
